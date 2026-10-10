@@ -153,7 +153,7 @@ bool Card::is_left_bower(Suit trump) const {
 //EFFECTS Returns true if the card is a trump card.  All cards of the trump
   // suit are trump cards.  The left bower is also a trump card.
 bool Card:: is_trump(Suit trump) const {
-  return suit == trump || get_suit(trump);
+  return suit == trump || is_left_bower(trump);
 }
 // Card Function ends 
 
