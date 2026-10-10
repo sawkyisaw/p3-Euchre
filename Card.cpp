@@ -153,7 +153,7 @@ bool Card::is_left_bower(Suit trump) const {
 //EFFECTS Returns true if the card is a trump card.  All cards of the trump
   // suit are trump cards.  The left bower is also a trump card.
 bool Card:: is_trump(Suit trump) const {
-  return get_suit(trump) || is_left_bower(trump);
+  return get_suit(trump) == trump || is_left_bower(trump);
 }
 // Card Function ends 
 
@@ -170,8 +170,8 @@ std::ostream & operator<<(std::ostream &os, const Card &card) {
 //NOTE The Card class declares this operator>> "friend" function,
 //     which means it is allowed to access card.rank and card.suit.
 std::istream & operator>>(std::istream &is, Card &card) {
-  string blank; 
-  is >> card.rank >> blank >> card.suit; 
+  string of;
+  is >> card.rank >> of >> card.suit; 
   return is;
 }
 
