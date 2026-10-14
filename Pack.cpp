@@ -32,7 +32,7 @@ using namespace std;
   // MODIFIES: pack_input
   // EFFECTS: Initializes Pack by reading from pack_input.
   // NOTE: The pack is initially full, with no cards dealt.
-  Pack::Pack(std::istream& pack_input) : next(0) {
+  Pack::Pack(istream& pack_input) : next(0) {
     for (int i = 0; i < PACK_SIZE; ++i) {
         pack_input >> cards[i];
     }
@@ -61,7 +61,7 @@ using namespace std;
 
       shuffled[2 * i] = cards[PACK_SIZE / 2 + i];
       shuffled[2 * i + 1] = cards[i];
-      
+
     }
     for (int i = 0; i < PACK_SIZE; ++i) {
       cards[i] = shuffled[i];
