@@ -14,7 +14,7 @@ TEST(test_card_ctor) {
 
 // Add more test cases here
 
-//Test if constructer gives Two of Spades - Saw
+// Test if constructer gives Two of Spades - Saw
 TEST(test1_two_spade) {
     Card c;
     ASSERT_EQUAL(TWO, c.get_rank());
@@ -184,7 +184,6 @@ TEST(test_card_less_led_suit_is_trump) {
   ASSERT_TRUE(Card_less(Card(NINE, SPADES), Card(JACK, CLUBS), led, SPADES));
 }
 
-//tests 
 TEST(test_card_less_bowers) {
   Card right(JACK, SPADES), left(JACK, CLUBS), ace(ACE, SPADES);
   ASSERT_TRUE(Card_less(left, right, SPADES));
@@ -193,6 +192,18 @@ TEST(test_card_less_bowers) {
   ASSERT_FALSE(Card_less(left, ace, SPADES));
   ASSERT_TRUE(Card_less(ace, right, SPADES));
   ASSERT_FALSE(Card_less(right, ace, SPADES));
+}
+
+// we needed another test for operator<< and operator>> 
+TEST(test_card_print_and_read) {
+  ostringstream oss;
+  oss << Card(TEN, HEARTS);
+  ASSERT_EQUAL(oss.str(), "Ten of Hearts");
+
+  istringstream iss("Queen of Diamonds");
+  Card c;
+  iss >> c;
+  ASSERT_EQUAL(c, Card(QUEEN, DIAMONDS));
 }
 
 
