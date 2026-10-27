@@ -15,7 +15,7 @@ for human player we have to have a helper function, the spec says so: "Add a pri
 remember to only use the algorithm library for sort() only.
 */
 
-// helper functions below //
+// ** helper functions below ** //
 
 // what is this for
 // this returns the num of cards in hand that are face or ace of the trump suit
@@ -66,7 +66,15 @@ public:
     Suit suit_to_check = upcard.get_suit();
     int cards_needed = 2;
 
+    if (round == 1) {
+      suit_to_check = upcard.get_suit();
+    }
+    else {
+      suit_to_check = Suit_next(upcard.get_suit());
+    }
+
     if (round == 2) {
+      
       suit_to_check = Suit_next(upcard.get_suit());
       cards_needed = 1;
     }
@@ -162,7 +170,7 @@ public:
   void add_card(const Card &c) override {
     assert(static_cast<int>(hand.size()) < MAX_HAND_SIZE);
     hand.push_back(c);
-    sort(hand.begin(), hand.end());   // keep hand sorted; not in a const function
+    sort(hand.begin(), hand.end());  
   }
 
   bool make_trump(const Card &, bool, int round,
@@ -208,7 +216,6 @@ private:
   string name;
   vector<Card> hand;
 
-  // prints each card in hand with its index
   void print_hand() const {
     for (size_t i = 0; i < hand.size(); ++i) {
       cout << "Human player " << name << "'s hand: "
